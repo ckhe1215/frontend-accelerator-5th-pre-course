@@ -1,26 +1,15 @@
+import { SavingProduct } from 'queries/types';
 import { colors, ListRow } from 'tosslib';
 
-export const SavingsProductItem = ({
-  상품명,
-  연이자율,
-  최소월납입액,
-  최대월납입액,
-  저축기간,
-}: {
-  상품명: string;
-  연이자율: number;
-  최소월납입액: number;
-  최대월납입액: number;
-  저축기간: number;
-}) => {
+export const SavingsProductItem = ({ product }: { product: SavingProduct }) => {
   return (
     <ListRow.Texts
       type="3RowTypeA"
-      top={상품명}
+      top={product.name}
       topProps={{ fontSize: 16, fontWeight: 'bold', color: colors.grey900 }}
-      middle={`연 이자율: ${연이자율}%`}
+      middle={`연 이자율: ${product.annualRate}%`}
       middleProps={{ fontSize: 14, color: colors.blue600, fontWeight: 'medium' }}
-      bottom={`${최소월납입액.toLocaleString('kr-KR')}원 ~ ${최대월납입액.toLocaleString('kr-KR')}원 | ${저축기간}개월`}
+      bottom={`${product.minMonthlyAmount.toLocaleString('kr-KR')}원 ~ ${product.maxMonthlyAmount.toLocaleString('kr-KR')}원 | ${product.availableTerms}개월`}
       bottomProps={{ fontSize: 13, color: colors.grey600 }}
     />
   );

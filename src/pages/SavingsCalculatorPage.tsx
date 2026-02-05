@@ -83,15 +83,7 @@ export function SavingsCalculatorPage() {
                   return (
                     <ListRow
                       key={product.id}
-                      contents={
-                        <SavingsProductItem
-                          상품명={product.name}
-                          연이자율={product.annualRate}
-                          최소월납입액={product.minMonthlyAmount}
-                          최대월납입액={product.maxMonthlyAmount}
-                          저축기간={product.availableTerms}
-                        />
-                      }
+                      contents={<SavingsProductItem product={product} />}
                       right={isSelected ? <Assets.Icon name="icon-check-circle-green" /> : null}
                       onClick={() => setSelectedProduct(product)}
                     />
@@ -132,15 +124,7 @@ export function SavingsCalculatorPage() {
                     return (
                       <ListRow
                         key={product.id}
-                        contents={
-                          <SavingsProductItem
-                            상품명={product.name}
-                            연이자율={product.annualRate}
-                            최소월납입액={product.minMonthlyAmount}
-                            최대월납입액={product.maxMonthlyAmount}
-                            저축기간={product.availableTerms}
-                          />
-                        }
+                        contents={<SavingsProductItem product={product} />}
                         right={isSelected ? <Assets.Icon name="icon-check-circle-green" /> : null}
                         onClick={() => setSelectedProduct(product)}
                       />
