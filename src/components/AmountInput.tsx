@@ -18,10 +18,12 @@ export const AmountInput = ({
       suffix="원"
       value={value ? value.toLocaleString('ko-KR') : ''}
       onChange={e => {
-        const val = e.target.value.replace(/,/g, '');
-        const isNumberString = (s: string) => /^\d+$/.test(s);
-        if (val === '' || isNumberString(val)) {
-          onChange(val === '' ? null : Number(val));
+        const rawValue = e.target.value.replace(/,/g, '');
+        const isEmpty = rawValue === '';
+        const isNumberString = /^\d+$/.test(rawValue);
+
+        if (isEmpty || isNumberString) {
+          onChange(isEmpty ? null : Number(rawValue));
         }
       }}
     />
