@@ -10,7 +10,7 @@ import { TargetAmountDiff } from 'components/TargetAmountDiff';
 import { SavingProduct } from 'queries/types';
 import { Suspense, useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import { Border, ListHeader, ListRow, NavigationBar, Spacing } from 'tosslib';
+import { Assets, Border, ListHeader, ListRow, NavigationBar, Spacing } from 'tosslib';
 
 type CalculatorForm = {
   monthlyAmount: number | null;
@@ -81,14 +81,18 @@ export function SavingsCalculatorPage() {
                 filteredProducts.map(product => {
                   const isSelected = selectedProduct?.id === product.id;
                   return (
-                    <SavingsProductItem
+                    <ListRow
                       key={product.id}
-                      상품명={product.name}
-                      연이자율={product.annualRate}
-                      최소월납입액={product.minMonthlyAmount}
-                      최대월납입액={product.maxMonthlyAmount}
-                      저축기간={product.availableTerms}
-                      isSelected={isSelected}
+                      contents={
+                        <SavingsProductItem
+                          상품명={product.name}
+                          연이자율={product.annualRate}
+                          최소월납입액={product.minMonthlyAmount}
+                          최대월납입액={product.maxMonthlyAmount}
+                          저축기간={product.availableTerms}
+                        />
+                      }
+                      right={isSelected ? <Assets.Icon name="icon-check-circle-green" /> : null}
                       onClick={() => setSelectedProduct(product)}
                     />
                   );
@@ -126,14 +130,18 @@ export function SavingsCalculatorPage() {
                   recommendedProducts.map(product => {
                     const isSelected = selectedProduct?.id === product.id;
                     return (
-                      <SavingsProductItem
+                      <ListRow
                         key={product.id}
-                        상품명={product.name}
-                        연이자율={product.annualRate}
-                        최소월납입액={product.minMonthlyAmount}
-                        최대월납입액={product.maxMonthlyAmount}
-                        저축기간={product.availableTerms}
-                        isSelected={isSelected}
+                        contents={
+                          <SavingsProductItem
+                            상품명={product.name}
+                            연이자율={product.annualRate}
+                            최소월납입액={product.minMonthlyAmount}
+                            최대월납입액={product.maxMonthlyAmount}
+                            저축기간={product.availableTerms}
+                          />
+                        }
+                        right={isSelected ? <Assets.Icon name="icon-check-circle-green" /> : null}
                         onClick={() => setSelectedProduct(product)}
                       />
                     );
